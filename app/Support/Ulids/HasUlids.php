@@ -6,6 +6,7 @@ namespace App\Support\Ulids;
 
 use Illuminate\Database\Eloquent\Concerns\HasUniqueStringIds;
 use Illuminate\Support\Str;
+use Psl\Str as PslStr;
 use Symfony\Component\Uid\Ulid;
 use Webmozart\Assert\Assert;
 
@@ -15,7 +16,7 @@ trait HasUlids
 
     public function newUniqueId(): string
     {
-        return strtolower((string) Str::ulid());
+        return PslStr\uppercase((string) Str::ulid());
     }
 
     public function getRouteKey(): string
@@ -23,8 +24,7 @@ trait HasUlids
         $key = $this->getKey();
         Assert::isInstanceOf($key, Ulid::class);
 
-        /** @infection-ignore-all UnwrapStrToUpper: Symfony Ulid constructor always uppercases; strtoupper is defensive */
-        return strtoupper((string) $key);
+        return PslStr\uppercase((string) $key);
     }
 
     /**

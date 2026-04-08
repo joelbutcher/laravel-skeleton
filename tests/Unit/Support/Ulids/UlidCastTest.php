@@ -7,6 +7,7 @@ namespace Tests\Unit\Support\Ulids;
 use App\Support\Ulids\UlidCast;
 use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
+use Psl\Str;
 use Symfony\Component\Uid\Ulid;
 use Tests\TestCase;
 use Webmozart\Assert\InvalidArgumentException;
@@ -57,9 +58,9 @@ final class UlidCastTest extends TestCase
     {
         $ulid = new Ulid();
 
-        $result = $this->cast->set($this->model, 'id', strtolower((string) $ulid), []);
+        $result = $this->cast->set($this->model, 'id', Str\lowercase((string) $ulid), []);
 
-        $this->assertSame(strtoupper((string) $ulid), $result);
+        $this->assertSame(Str\uppercase((string) $ulid), $result);
     }
 
     #[Test]
@@ -69,7 +70,7 @@ final class UlidCastTest extends TestCase
 
         $result = $this->cast->set($this->model, 'id', $ulid, []);
 
-        $this->assertSame(strtoupper((string) $ulid), $result);
+        $this->assertSame(Str\uppercase((string) $ulid), $result);
     }
 
     #[Test]
@@ -87,7 +88,7 @@ final class UlidCastTest extends TestCase
 
         $result = $this->cast->serialize($this->model, 'id', $ulid, []);
 
-        $this->assertSame(strtolower((string) $ulid), $result);
+        $this->assertSame(Str\lowercase((string) $ulid), $result);
     }
 
     #[Test]

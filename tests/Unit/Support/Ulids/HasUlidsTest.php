@@ -8,6 +8,7 @@ use App\Support\Ulids\HasUlids;
 use App\Support\Ulids\UlidCast;
 use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
+use Psl\Str;
 use Symfony\Component\Uid\Ulid;
 use Tests\TestCase;
 use Webmozart\Assert\InvalidArgumentException;
@@ -35,7 +36,7 @@ final class HasUlidsTest extends TestCase
         $id = $this->model->newUniqueId();
 
         $this->assertTrue(Ulid::isValid($id));
-        $this->assertSame(strtolower($id), $id);
+        $this->assertSame(Str\uppercase($id), $id);
     }
 
     #[Test]
@@ -46,7 +47,7 @@ final class HasUlidsTest extends TestCase
 
         $routeKey = $this->model->getRouteKey();
 
-        $this->assertSame(strtoupper((string) $ulid), $routeKey);
+        $this->assertSame(Str\uppercase((string) $ulid), $routeKey);
     }
 
     #[Test]

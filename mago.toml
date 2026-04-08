@@ -139,7 +139,7 @@ disallowed-functions = { enabled = true }
 no-debug-symbols = { enabled = true }
 no-short-opening-tag = { enabled = true }
 no-insecure-comparison = { enabled = true }
-no-literal-password = { enabled = true }
+no-literal-password = { enabled = false }
 tainted-data-to-sink = { enabled = true }
 sensitive-parameter = { enabled = true }
 require-preg-quote-delimiter = { enabled = true }

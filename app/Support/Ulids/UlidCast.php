@@ -7,6 +7,8 @@ namespace App\Support\Ulids;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Contracts\Database\Eloquent\SerializesCastableAttributes;
 use Illuminate\Database\Eloquent\Model;
+use Psl\Str;
+use Psl\Type;
 use Symfony\Component\Uid\Ulid;
 use Webmozart\Assert\Assert;
 
@@ -19,10 +21,7 @@ final readonly class UlidCast implements CastsAttributes, SerializesCastableAttr
             return null;
         }
 
-        /** @infection-ignore-all MethodCallRemoval: Ulid::fromString('') throws the same InvalidArgumentException */
-        Assert::stringNotEmpty($value);
-
-        return Ulid::fromString($value);
+        return Ulid::fromString(Type\string()->assert($value));
     }
 
     public function serialize(Model $model, string $key, mixed $value, array $attributes): ?string
@@ -33,7 +32,7 @@ final readonly class UlidCast implements CastsAttributes, SerializesCastableAttr
 
         Assert::isInstanceOf($value, Ulid::class);
 
-        return strtolower((string) $value);
+        return Str\lowercase((string) $value);
     }
 
     public function set(Model $model, string $key, mixed $value, array $attributes): ?string
@@ -43,12 +42,11 @@ final readonly class UlidCast implements CastsAttributes, SerializesCastableAttr
         }
 
         if (is_string($value)) {
-            return strtoupper($value);
+            return Str\uppercase($value);
         }
 
         Assert::isInstanceOf($value, Ulid::class);
 
-        /** @infection-ignore-all UnwrapStrToUpper: Symfony Ulid::__toString() already returns uppercase */
-        return strtoupper((string) $value);
+        return Str\uppercase((string) $value);
     }
 }
