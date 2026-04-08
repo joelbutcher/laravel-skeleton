@@ -1,5 +1,15 @@
 # Testing Best Practices
 
+## Follow the Testing Pyramid (70/20/10)
+
+Maintain a strict testing pyramid: **70% unit tests, 20% integration tests, 10% E2E tests**.
+
+- **Unit tests** (`tests/Unit/`) — Test individual classes and methods in isolation. Mock external dependencies. These are fast and should form the bulk of the suite.
+- **Integration tests** (`tests/Feature/`) — Test component boundaries (HTTP, database, queues). Keep focused on integration points, not business logic.
+- **E2E tests** (`features/*.feature`) — Behat scenarios for critical user-facing workflows only. Reserve for high-value acceptance criteria.
+
+Do not write an integration or E2E test when a unit test would suffice. Push logic down to testable, isolated units.
+
 ## Use `LazilyRefreshDatabase` Over `RefreshDatabase`
 
 `RefreshDatabase` runs all migrations every test run even when the schema hasn't changed. `LazilyRefreshDatabase` only migrates when needed, significantly speeding up large suites.

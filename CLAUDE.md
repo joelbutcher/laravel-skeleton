@@ -49,6 +49,16 @@ See README.md for full domain model.
 - `features/` — Behat BDD feature files (Gherkin scenarios)
 - `tests/Behat/FeatureContext.php` — Behat step definitions, bootstraps a full Laravel app with `RefreshDatabase`
 
+### Testing Pyramid
+
+Follow a strict testing pyramid — **70% unit, 20% integration, 10% E2E (Behat)**. When adding new functionality:
+
+- **Unit tests first** (`tests/Unit/`) — Test individual classes, methods, and logic in isolation. Mock external dependencies. These should be fast and form the bulk of the test suite.
+- **Integration tests second** (`tests/Feature/`) — Test how components work together (HTTP requests, database queries, queue jobs). Use `RefreshDatabase`. Keep these focused on boundaries.
+- **E2E tests sparingly** (`features/*.feature`) — Behat scenarios for critical user-facing workflows only. These are slow and brittle; reserve them for high-value acceptance criteria.
+
+Do not write an integration or E2E test when a unit test would suffice. Push logic down to testable units rather than testing everything through HTTP.
+
 ### Key Conventions
 
 - **No Carbon/DateTime** — Use `Brick\DateTime\LocalDate` or `Brick\DateTime\LocalDateTime` instead. Enforced by PHPStan disallowed-namespace rules.
