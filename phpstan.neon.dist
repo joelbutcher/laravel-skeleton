@@ -1,0 +1,15 @@
+parameters:
+    level: max
+    paths:
+        - app/
+        - database/
+    bootstrapFiles:
+        - vendor/autoload.php
+    checkOctaneCompatibility: true
+
+    databaseMigrationsPath:
+        - database/migrations
+
+includes:
+    - phpstan-rules.neon
+    - vendor/larastan/larastan/extension.neon

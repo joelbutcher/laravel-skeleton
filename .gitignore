@@ -1,0 +1,64 @@
+# Composer Related
+composer.lock
+/vendor
+auth.json
+cghooks.lock
+
+# Frontend Assets
+/node_modules
+
+# Logs
+npm-debug.log
+yarn-error.log
+infection.log
+
+# Caches
+.phpunit.cache
+.phpunit.result.cache
+/build
+
+# Editors
+/.idea
+/.fleet
+/.vscode
+/.zed
+
+# Code sniffer
+.php_cs
+.php_cs.cache
+.php-cs-fixer.cache
+
+# Misc
+phpunit.xml
+phpstan.neon
+psalm.xml
+testbench.yaml
+/docs
+/coverage
+
+# Laravel
+/public/build
+/public/hot
+/public/storage
+/public/vendor
+/public/*/filament
+/public/*/filament-socialite
+/public/**/filament-alert-component
+/storage/*.key
+/storage/pail
+.env
+.env.backup
+.env.production
+
+# AI
+.chief/prds
+.claude/settings.local.json
+.claude/worktrees/
+.chief/
+
+**/caddy
+frankenphp
+frankenphp-worker.php
+
+# SQLite databases
+/database/*.sqlite

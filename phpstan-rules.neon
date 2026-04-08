@@ -1,0 +1,16 @@
+parameters:
+    disallowedNamespaces:
+        -
+            namespace: 'Illuminate\Database\Eloquent\Concerns\HasUlids'
+            message: 'use App\Support\Ulids\HasUlids instead'
+        -
+            namespace: 'DateTime'
+            message: 'use Brick\DateTime\LocalDate or Brick\DateTime\LocalDateTime instead'
+        -
+            namespace: 'Carbon\Carbon'
+            message: 'use Brick\DateTime\LocalDate or Brick\DateTime\LocalDateTime instead'
+        -
+            namespace: 'Illuminate\Support\Carbon'
+            message: 'use Brick\DateTime\LocalDate or Brick\DateTime\LocalDateTime instead'
+includes:
+    - vendor/spaze/phpstan-disallowed-calls/extension.neon
