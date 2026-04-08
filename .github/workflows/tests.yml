@@ -21,8 +21,6 @@ jobs:
 
       - name: Install Dependencies
         uses: ramsey/composer-install@v3
-        env:
-          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.GH_TOKEN_READ_REPOSITORIES }}"}}'
 
       - run: composer test
 
